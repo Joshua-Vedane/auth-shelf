@@ -26,5 +26,5 @@ function* shelfSaga() {
     yield takeEvery('ADD_ITEM', addToSelf)
 }
 
-export default addToSelf;
+export default shelfSaga;
 
