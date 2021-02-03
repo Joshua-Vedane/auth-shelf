@@ -23,9 +23,9 @@ function ShelfPage() {
     setNewImage('');
   };
 
-  const handleDelete = () => {
+  const handleDelete = (itemId) => {
     console.log('clicked handleDelete');
-    dispatch ({type: 'DELETE_ITEM', payload: {item_id: shelfItem.id}})
+    dispatch ({type: 'DELETE_ITEM', payload: {item_id: itemId}})
   }
 
   return (
@@ -74,7 +74,7 @@ function ShelfPage() {
                       variant="contained"
                       color="secondary"
                       // startIcon={<DeleteIcon />}
-                      onClick={handleDelete}
+                      onClick={() => {handleDelete(shelfItem.id)}}
                     >
                      Delete
                     </Button>
