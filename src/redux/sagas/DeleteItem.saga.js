@@ -11,7 +11,7 @@ function* deleteFromShelf(action) {
 
         console.log(itemToDelete);
         
-        const response = yield axios.delete('/api/shelf/:id', itemToDelete);
+        const response = yield axios.delete(`/api/shelf/${itemToDelete}`);
         console.log('Deleting from shelf', itemToDelete);
         console.log('response from delete:', response.data);
 
