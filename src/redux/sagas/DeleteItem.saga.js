@@ -2,12 +2,10 @@ import axios from 'axios';
 import { put, takeEvery, takeLatest } from 'redux-saga/effects';
 
 function* deleteFromShelf(action) {
-    console.log(action.payload);
+    console.log('payload:', action.payload);
     
     try {
-        const itemToDelete = {
-            id: action.payload.id
-         }
+        const itemToDelete = action.payload.item_id
 
         console.log(itemToDelete);
         
