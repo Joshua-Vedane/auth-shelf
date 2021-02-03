@@ -10,7 +10,7 @@ function ShelfPage() {
   
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('handleSubmit');
+    console.log('handleSubmit', newDescription, newImage);
     dispatch({type: 'ADD_ITEM', payload: {description: newDescription, image_url: newImage }})
     setNewDescription('');
     setNewImage('');
