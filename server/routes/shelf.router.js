@@ -29,19 +29,22 @@ router.get('/', (req, res) => {
  */
 router.post('/', (req, res) => {
   console.log(req.body);
-  
-  
-  const queryText = `INSERT INTO "item" ("description", "image_url", "user_id")
-                      VALUES ($1, $2, $3);`;
 
-  pool.query(queryText, [req.body.description, req.body.image, req.user.id])
-  .then(results => {
-    console.log('Item added to shelf');
-    res.sendStatus(201);
-  }).catch((err) => {
-    console.log(err);
-    res.sendStatus(500)
-  }) 
+  const queryText = `
+    INSERT INTO "item" ("description", "image_url", "user_id")
+    VALUES ($1, $2, $3);
+  `;
+
+  pool
+    .query(queryText, [req.body.description, req.body.image, req.user.id])
+    .then(() => {
+      console.log('Item added to shelf');
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(500);
+    });
 });
 
 /**
@@ -49,6 +52,20 @@ router.post('/', (req, res) => {
  */
 router.delete('/:id', (req, res) => {
   // endpoint functionality
+  if (req.isAuthenticated()) {
+    const sqlText = `
+      DELETE FROM "item" WHERE "id" = $1 AND "user_id" = $2;
+    `;
+
+    pool
+      .query(sqlText, [req.params.id, req.user.id])
+      .then(() => res.sendStatus(204))
+      .catch((error) => {
+        console.error('error in delete', error);
+      });
+  } else {
+    res.sendStatus(403);
+  }
 });
 
 /**
