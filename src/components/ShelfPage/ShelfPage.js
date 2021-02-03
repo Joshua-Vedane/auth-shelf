@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, Typography, Paper, Grid } from '@material-ui/core';
+import { Box, Typography, Paper, Grid, Button } from '@material-ui/core';
+// import {DeleteIcon} from '@material-ui/icons';
 
 function ShelfPage() {
   const dispatch = useDispatch();
@@ -23,6 +24,11 @@ function ShelfPage() {
     setNewDescription('');
     setNewImage('');
   };
+
+  const handleDelete = () => {
+    console.log('clicked handleDelete');
+    dispatch ({type: 'DELETE_ITEM', payload: {item_id: shelfItem.id}})
+  }
 
   return (
     <>
@@ -65,7 +71,18 @@ function ShelfPage() {
                       <img src={shelfItem.image_url} />
                     </Grid>
                   </Grid>
+                  <Grid item>
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      // startIcon={<DeleteIcon />}
+                      onClick={handleDelete}
+                    >
+                     Delete
+                    </Button>
+                  </Grid>
                 </Box>
+
               </Paper>
             </Box>
           );
