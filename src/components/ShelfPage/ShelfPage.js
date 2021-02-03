@@ -9,9 +9,7 @@ function ShelfPage() {
   const [newImage, setNewImage] = useState('');
 
   //display all shelf items
-  useEffect(() => {
-    dispatch({ type: 'FETCH_SHELF' });
-  }, []);
+  useEffect(() => dispatch({ type: 'FETCH_SHELF' }), []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -35,7 +33,7 @@ function ShelfPage() {
               id="description"
               value={newDescription}
               onChange={(event) => setNewDescription(event.target.value)}
-            ></input>
+            />
           </label>
           Image URL
           <label htmlFor="itemImage">
@@ -44,7 +42,7 @@ function ShelfPage() {
               id="itemImage"
               value={newImage}
               onChange={(event) => setNewImage(event.target.value)}
-            ></input>
+            />
           </label>
           <input type="submit"></input>
         </form>
