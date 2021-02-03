@@ -1,4 +1,6 @@
-import React from 'react';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+
 
 function ShelfPage() {
   return (
